@@ -352,36 +352,48 @@ Date: [DATE]
 
 ---
 
-## Reference Examples
+<examples>
+The following are historical illustrations of CAP patterns. They show how the framework applied in specific cases — not that these outcomes are predictable or repeatable.
 
-The following are historical illustrations of CAP patterns. They show how the framework applied to specific companies — not that these outcomes are predictable or repeatable.
+<example>
+**Pattern**: CAP underestimated  
+**Scenario**: A large software firm (2020, P/E ~30x)  
+**Outcome**: Outperformed broad index over next 4 years  
+**Mechanism**: Market priced a short CAP for a business whose moat widened (cloud transition, enterprise switching costs)
+</example>
 
-### CAP Underestimated (Real CAP > Implied CAP)
-| Company | Period | P/E | Outcome | Notes |
-|---------|--------|-----|---------|-------|
-| Large software firm | 2020 | ~30x | Outperformed broad index over next 4 years | Market priced short CAP for a business with expanding moat (cloud transition, enterprise switching costs) |
+<example>
+**Pattern**: CAP overestimated  
+**Scenario**: A videoconferencing platform (2021, P/E ~200x)  
+**Outcome**: Declined ~80% from peak over 3 years  
+**Mechanism**: Pandemic growth boost proved temporary; competitors offered free alternatives; moat was narrow
+</example>
 
-### CAP Overestimated (Real CAP < Implied CAP)
-| Company | Period | P/E | Outcome | Notes |
-|---------|--------|-----|---------|-------|
-| Videoconferencing platform | 2021 | ~200x | Declined ~80% from peak over next 3 years | Pandemic growth boost was temporary; competitors offered free alternatives; moat was narrow |
+<example>
+**Pattern**: No moat — cyclical  
+**Scenario**: A global shipping line (2021-2023, ROIC 30%+ → below WACC)  
+**Outcome**: ROIC reversed as capacity normalised  
+**Mechanism**: High ROIC during supply shortage, no pricing power outside cycle
+</example>
 
-### Cyclical / Commodity (No Moat)
-| Company | Period | ROIC Pattern | Key Lesson |
-|---------|--------|--------------|------------|
-| Global shipping line | 2021-2023 | 30%+ → below WACC | High ROIC during supply shortage reversed as capacity normalised. No pricing power outside cycle |
+<example>
+**Pattern**: Moat destroyed by structural change  
+**Scenario**: Film photography pioneer  
+**Mechanism**: Digital photography replaced the category
+</example>
 
-### Failed Moats (Structural Change)
-| Company | Former Advantage | What Changed |
-|---------|------------------|--------------|
-| Film photography pioneer | Brand + Patents | Digital photography replaced the category |
-| Mobile phone leader | Brand + Scale + Distribution | Smartphone platform shift (touchscreen, apps) made hardware differentiation secondary |
-| Enterprise IT incumbent | Switching Costs + Sales Force | Cloud computing reduced need for on-premise integration |
-| Conglomerate | Scale + Brand + Capital Access | Poor capital allocation and complexity destroyed value over decades |
+<example>
+**Pattern**: Moat destroyed by platform shift  
+**Scenario**: Mobile phone leader  
+**Mechanism**: Smartphone platform shift made hardware differentiation secondary
+</example>
+</examples>
 
 ---
 
 ## Usage Notes
+
+**On examples**: the `<examples>` section contains historical illustrations, not rules. They show patterns that occurred — not that they will repeat. Do not pattern-match the current analysis to a past case; assess the current company on its own fundamentals.
 
 1. **Analysis order**: business model and competitive position before valuation. P/E in isolation is not informative.
 2. **Confidence calibration**: state uncertainty levels for each estimate. A report without acknowledged uncertainty is incomplete.
