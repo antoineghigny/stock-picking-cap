@@ -200,7 +200,7 @@ Run this before trusting any financial metric. A single red flag does not disqua
 | **Off-balance-sheet debt** | Operating leases, factoring of receivables, guarantees | Retail with massive lease obligations |
 | **Auditor changes / restatements** | Multiple auditor changes or historical restatements | Reliable predictor of problems |
 | **Insider selling patterns** | C-suite selling > 10x their buying over 12 months | Best leading indicator of overvaluation |
-| **One-time items / provision reversals** | Revenue or earnings inflated by non-recurring items (legal settlements, provision writebacks, 340B adjustments). Compare reported vs adjusted figures. | Pharma companies with 340B program adjustments, banks with reserve releases |
+| **One-time items / provision reversals** | Revenue or earnings inflated by non-recurring items (legal settlements, provision writebacks, regulatory adjustments). Compare reported vs adjusted figures. | Companies with large regulatory or litigation-related provisions |
 
 ---
 
@@ -640,8 +640,7 @@ Date: [DATE]
 | Company | Year | P/E | vs MSCI P/E | Alpha Result | Lesson |
 |---------|------|-----|-------------|-------------|--------|
 | **Microsoft** | 2020 | ~30x | ~1.5x MSCI | Outperformed 4x | CAP was underestimated |
-| **Novo Nordisk** | 2026 | ~13x | ~0.7x MSCI | ? | CAP anomaly: market prices 5y for a 20y moat |
-| **ASML** | 2026 | ~45x | ~2.4x MSCI | ? | CAP may be overestimated despite wide moat |
+| **ASML** | 2024 | ~45x | ~2.4x MSCI | ? | CAP may be overestimated despite wide moat |
 | **Zoom** | 2021 | ~200x | ~10x MSCI | -80% | Mirage: premium moat vanished |
 
 ### Failed Moats (Survivorship Bias Warning)
