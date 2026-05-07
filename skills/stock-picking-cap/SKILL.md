@@ -11,6 +11,7 @@ Analyze a publicly traded company using the Competitive Advantage Period (CAP) m
 2. Whether its ROIC sustainably exceeds its WACC
 3. How long this advantage can resist mean reversion
 4. Whether the market under- or over-estimates this duration in the current price
+5. **Whether the stock beats the passive alternative (MSCI World) after adjusting for risk**
 
 ## Guiding Principles
 - **Value creation = ROIC - WACC**, not just rising profits
@@ -20,6 +21,7 @@ Analyze a publicly traded company using the Competitive Advantage Period (CAP) m
 - **Circle of competence**: do not analyze what you do not understand technologically
 - **Margin of safety**: even a wonderful company can be a bad investment if the price bakes in an unrealistic CAP
 - **No framework is objective**: this tool reduces blind spots but does not eliminate them. Every score, fade rate, and CAP estimate contains subjective judgment. Treat outputs as hypotheses, not facts.
+- **Opportunity Cost**: stock-picking only makes sense if the risk/reward asymmetry beats the passive benchmark (MSCI World). A Quality Compounder at fair price is not an opportunity — the market-implied CAP must be significantly shorter than the estimated real CAP. The true test is: "Would I rather own MSCI World at 19x P/E with 8% growth, or this stock?"
 
 ---
 
@@ -50,6 +52,7 @@ Before analysing any company, answer these. If uncertain, flag it explicitly in 
 | **Home bias** | "I know this brand so it must be good" | Compare with global peers |
 | **Narrative** | "AI will change everything" | Quantify: how much revenue comes from the narrative? |
 | **Anchoring** | "It was $500 before, now $300, it's cheap" | Calculate implied CAP, ignore the 52-week range |
+| **Active management illusion** | "I can pick better than an index" | Run opportunity cost analysis vs MSCI World before concluding |
 
 ---
 
@@ -121,6 +124,7 @@ Identify and classify the competitive advantage using the Morningstar framework:
 - Regulatory changes removing barriers to entry
 - Technology shift that bypasses the company's advantage
 - Patent cliff approaching without pipeline to replace
+- **Voluntary catalogue price cuts to defend market share (price war initiated)** — a company that cuts its own list prices unilaterally is signalling pricing power erosion
 
 ---
 
@@ -196,6 +200,7 @@ Run this before trusting any financial metric. A single red flag does not disqua
 | **Off-balance-sheet debt** | Operating leases, factoring of receivables, guarantees | Retail with massive lease obligations |
 | **Auditor changes / restatements** | Multiple auditor changes or historical restatements | Reliable predictor of problems |
 | **Insider selling patterns** | C-suite selling > 10x their buying over 12 months | Best leading indicator of overvaluation |
+| **One-time items / provision reversals** | Revenue or earnings inflated by non-recurring items (legal settlements, provision writebacks, 340B adjustments). Compare reported vs adjusted figures. | Pharma companies with 340B program adjustments, banks with reserve releases |
 
 ---
 
@@ -255,6 +260,7 @@ Management quality is not a vague concept. Evaluate with concrete metrics:
 - Acquiring unrelated businesses (empire building)
 - Holding excess cash for years without plan (Berkshire Hathaway problem)
 - Dividend cut shortly after buyback program (signalling failure)
+- **Dividend growing while FCF does not cover it** — check FCF payout ratio annually. Growing dividend + negative FCF coverage = debt-funded illusion, not shareholder return
 
 ---
 
@@ -285,9 +291,67 @@ Solve for **n** (number of CAP years) based on the current market price.
 - **Microsoft (2020)**: P/E ~30, market anticipated a short CAP. Result: stock doubled in 4 years because CAP was underestimated.
 - **ASML (2026)**: 694% premium above fair value, market anticipates an extremely long CAP that may be unrealistic.
 
+**Capex adjustment for abnormal periods:**
+When capex > 50% of Operating Cash Flow, P/FCF becomes misleading (company is investing massively for future growth). Use P/Operating CF instead, or normalize capex over 5-10 years.
+
+**Dividend coverage check:**
+Verify the dividend is covered by Free Cash Flow. A growing dividend not covered by FCF = debt-funded illusion. FCF Payout Ratio: < 50% healthy, > 80% dangerous.
+
 ---
 
-### Step 7: Quality Score and Verdict
+### Step 7: Opportunity Cost Analysis vs Passive Benchmark
+
+A Quality Compounder can be a great investment — but not necessarily better than MSCI World. This step forces explicit comparison before any buy/sell decision.
+
+**MSCI World reference metrics (as of May 2026):**
+| Metric | MSCI World |
+|--------|------------|
+| P/E (TTM) | ~19x |
+| EPS CAGR (5y) | ~8% |
+| PEG Ratio | ~2.4 |
+| FCF Yield | ~2.5% |
+| Dividend Yield | ~2.0% |
+| ROIC (avg) | ~15% |
+| Beta | 1.0 |
+| Expected annual return (5-10y) | ~8-10% |
+
+**Comparison table:**
+| Metric | Stock | MSCI World | Gap | Interpretation |
+|--------|-------|------------|-----|----------------|
+| **PEG Ratio** | PER ÷ EPS CAGR | 2.4 | [X] | < 1 means better growth efficiency |
+| **FCF Yield** | FCF / Market Cap | 2.5% | [X] | Higher = better cash return |
+| **Expected return 5-10y** | Est. CAGR + Div Yield | ~8-10% | [X] | Based on estimated CAP fade |
+| **Dividend Yield** | Div / Price | 2.0% | [X] | Cash return comparison |
+| **ROIC** | NOPAT / Invested Capital | ~15% | [X] | Business quality |
+| **Risk (Beta)** | 5y monthly | 1.0 | [X] | Relative volatility |
+| **CAP-adjusted expected return** | CAGR × (CAP_est ÷ CAP_implied) + Div Yield | ~8-10% | [X] | Anomaly-adjusted view |
+
+**CAP-adjusted expected return formula (opportunity lens):**
+```
+E[Return] = CAGR_EPS × (CAP_estimated ÷ CAP_implied) + Div_Yield
+```
+- If CAGR_EPS = 20%, CAP_est = 15y, CAP_implied = 5y, Div = 4%
+- E[Return] = 20% × (15/5) + 4% = **64%/yr implied** (market is so wrong that reversion to fair value produces this return)
+- If CAP_implied ≈ CAP_est, then E[Return] ≈ CAGR + Div = ~24% (still beats MSCI World but less extreme)
+
+**Decision rule:**
+| Alpha expected vs MSCI World | Verdict |
+|------------------------------|---------|
+| > 3%/year over 5+ years | **Genuine opportunity** — worth the stock-picking risk |
+| 1-3%/year over 5+ years | **Marginal** — only if high conviction on moat durability |
+| < 1%/year | **Not worth it** — buy MSCI World instead |
+| Negative | **Sell / avoid** — the passive portfolio beats this pick |
+
+**Portfolio framing (correct framing):**
+Stock-picking is not a binary choice (100% stock vs 100% MSCI World). It is a **marginal decision**: for the portion of my portfolio allocated to active stock-picking (say 10-20%), does this specific stock earn that allocation better than just putting it into MSCI World?
+
+**Final required question:** *"For the fraction of my portfolio dedicated to stock-picking, is the expected alpha of this stock (vs MSCI World) large enough to compensate for the concentration risk and analysis time?"* The answer must be quantitative.
+
+A Quality Compounder with expected alpha > 3%/year justifies its allocation. Alpha < 1%/year does not — better to put that portion into MSCI World and keep it simple.
+
+---
+
+### Step 8: Quality Score and Verdict
 Rate the company on a scale of 1 to 5 for each criterion, total out of 30.
 
 | Criterion | 5 (Excellent) | 1 (Weak) |
@@ -306,13 +370,14 @@ Rate the company on a scale of 1 to 5 for each criterion, total out of 30.
 - **< 15**: Avoid for the long term
 
 **Final verdict:**
-- **Quality Compounder**: Buy if the price bakes in a realistic or underestimated CAP
+- **Quality Compounder**: Buy if the price bakes in a realistic or underestimated CAP **and** the stock beats MSCI World on expected risk-adjusted return
 - **Mirage / Value Trap**: Avoid despite appearances (low P/E, temporary growth)
 - **Uncertain**: Wait for more visibility on the moat or valuation
+- **Better off in MSCI World**: The stock may be fine, but not enough to justify active management
 
 ---
 
-### Step 8: Falsification (Try to Prove Yourself Wrong)
+### Step 9: Falsification (Try to Prove Yourself Wrong)
 
 Before concluding, actively try to disprove the investment thesis. Answer each:
 
@@ -324,12 +389,13 @@ Before concluding, actively try to disprove the investment thesis. Answer each:
 6. **What happens if rates go back to 6%?** (would the valuation collapse?)
 7. **Has this moat ever been tested in a recession?** (2008, 2020, 2022)
 8. **Is the CEO's incentive aligned with long-term shareholders?** (check their stock ownership vs options grants)
+9. **Would I still pick this stock over MSCI World if my analysis is 30% wrong?** (margin of safety on the opportunity cost)
 
 If any answer reveals a vulnerability you cannot quantify, reduce position size or skip.
 
 ---
 
-### Step 9: When to Sell (Exit Discipline)
+### Step 10: When to Sell (Exit Discipline)
 
 The hardest part of investing. Define exit criteria **before** buying.
 
@@ -422,6 +488,36 @@ Check whether [COMPANY] could be a mirage / value trap:
 If 2+ answers are positive, classify as a potential mirage.
 ```
 
+### Prompt 5: Opportunity Cost vs MSCI World
+```
+Compare [COMPANY] at current price [PRICE] against MSCI World:
+
+Stock metrics to use:
+- P/E: [X] | EPS CAGR 5y: [X]% | PEG: [X]
+- FCF Yield: [X]% | Div Yield: [X]%
+- ROIC: [X]% | Beta: [X]
+- CAP estimated: [X]y | CAP implied by price: [X]y
+
+MSCI World reference:
+- P/E: ~19x | EPS CAGR 5y: ~8% | PEG: ~2.4
+- FCF Yield: ~2.5% | Div Yield: ~2.0%
+- ROIC: ~15% | Beta: 1.0
+- Expected return 5-10y: ~8-10%
+
+Calculate:
+1. PEG ratio comparison (lower = better)
+2. CAP-adjusted expected return: CAGR × (CAP_est ÷ CAP_implied) + Div Yield
+3. Alpha expected vs MSCI World: [E[Return_stock] - E[Return_MSCI]]
+4. Risk-adjusted comparison: does the stock compensate enough for its higher specific risk?
+
+Apply decision rule:
+- Alpha > 3%/y → genuine opportunity
+- Alpha 1-3%/y → marginal, requires high conviction
+- Alpha < 1%/y → recommend MSCI World instead
+
+Conclude: is this stock worth the active management risk vs a passive world index?
+```
+
 ---
 
 ## Mandatory Output Format
@@ -433,10 +529,11 @@ Produce a structured markdown report with the following sections:
 Date: [DATE]
 
 ## Executive Summary
-- Verdict: [Quality Compounder / Mirage / Value Trap / Uncertain]
+- Verdict: [Quality Compounder / Mirage / Value Trap / Uncertain / Better off in MSCI World]
 - Quality Score: [XX/30]
 - Recommendation: [Buy / Watch / Wait / Avoid]
 - Current Price: [X] | Reference Fair Value: [X] | Margin of Safety: [X]%
+- Opportunity Cost Verdict: [Beats MSCI World / Matches MSCI World / Worse than MSCI World]
 - Suggested position size: [X]% of portfolio (based on conviction: 5-40%)
 
 ## 0. Pre-Flight Checks
@@ -487,21 +584,36 @@ Date: [DATE]
 - Dividend Yield: [X]%
 - Insider activity: [Buying / Neutral / Selling]
 
-## 7. Falsification
+## 7. Opportunity Cost vs MSCI World
+| Metric | Stock | MSCI World | Gap |
+|--------|-------|------------|-----|
+| P/E | [X] | ~19x | [X] |
+| EPS CAGR 5y | [X]% | ~8% | [X] |
+| PEG Ratio | [X] | ~2.4 | [X] |
+| FCF Yield | [X]% | ~2.5% | [X] |
+| Div Yield | [X]% | ~2.0% | [X] |
+| ROIC | [X]% | ~15% | [X] |
+| Beta | [X] | 1.0 | [X] |
+| CAP-adjusted E[Return] | [X]% | ~8-10% | [X] |
+- Alpha expected vs MSCI World: [X]%/year
+- Verdict: [Genuine opportunity (alpha > 3%) / Marginal (1-3%) / Not worth it (< 1%)]
+
+## 8. Falsification
 - What would break the thesis: [List]
 - Would I short this stock? [Yes / No]
 - Sceptic's case: [3 bullet points]
+- Would I still pick this over MSCI World if my analysis is 30% wrong? [Yes / No]
 
-## 8. Risks and Red Flags
+## 9. Risks and Red Flags
 - [Risk 1]
 - [Risk 2]
 - [Risk 3]
 
-## 9. Exit Criteria
+## 10. Exit Criteria
 - Sell if: [specific conditions]
 
-## 10. Conclusion and Thesis
-[Synthesis: why buy, wait, or avoid. Explicit reference to CAP and moat.]
+## 11. Conclusion and Thesis
+[Synthesis: why buy, wait, or avoid. Explicit reference to CAP, moat, and opportunity cost vs MSCI World. Answer: "Why this stock instead of MSCI World?"]
 ```
 
 ---
@@ -523,6 +635,14 @@ Date: [DATE]
 | **Maersk** | Low P/E, dividends | Commodity shipping, no moat | Don't buy cyclicals at the peak |
 | **Zoom (2021)** | ROIC > 100%, boom | No durable moat, free MS/Google competition | Temporary boost ≠ structural advantage |
 | **Shipping/Commodities** | High ROIC during shortages | No pricing power | Mean reversion is inevitable |
+
+### Opportunity Cost Examples (Stock vs MSCI World)
+| Company | Year | P/E | vs MSCI P/E | Alpha Result | Lesson |
+|---------|------|-----|-------------|-------------|--------|
+| **Microsoft** | 2020 | ~30x | ~1.5x MSCI | Outperformed 4x | CAP was underestimated |
+| **Novo Nordisk** | 2026 | ~13x | ~0.7x MSCI | ? | CAP anomaly: market prices 5y for a 20y moat |
+| **ASML** | 2026 | ~45x | ~2.4x MSCI | ? | CAP may be overestimated despite wide moat |
+| **Zoom** | 2021 | ~200x | ~10x MSCI | -80% | Mirage: premium moat vanished |
 
 ### Failed Moats (Survivorship Bias Warning)
 These companies all had Wide Moats at their peak. The lesson: moats are not permanent.
@@ -548,11 +668,12 @@ These companies all had Wide Moats at their peak. The lesson: moats are not perm
 1. **Always start with the business model and the moat**, never with the P/E ratio or stock price.
 2. **Never recommend a company without an identifiable moat** for long-term investment (10+ years).
 3. **Always compare estimated real CAP with market-implied CAP** — that is where the anomaly lies.
-4. **If data is insufficient**, explicitly ask what is missing rather than guessing or extrapolating.
-5. **For complex technology companies**, verify they are within your circle of competence. Otherwise, flag uncertainty.
-6. **Do not rely on the latest quarter's earnings alone** — look at 5 to 10 years of history.
-7. **Distinguish operational value creation (ROIC) from leverage effect (ROE)** — prefer ROIC.
-8. **A high P/E is not necessarily expensive** if the CAP is underestimated. A low P/E is not necessarily cheap if the CAP is zero.
-9. **Define exit criteria before buying.**
-10. **Run the falsification checklist before every final verdict.**
-11. **Run the accounting red flag checklist before trusting any financial metric.**
+4. **Always compare opportunity vs MSCI World before recommending.** If expected alpha < 2%/year, recommend MSCI World instead.
+5. **If data is insufficient**, explicitly ask what is missing rather than guessing or extrapolating.
+6. **For complex technology companies**, verify they are within your circle of competence. Otherwise, flag uncertainty.
+7. **Do not rely on the latest quarter's earnings alone** — look at 5 to 10 years of history.
+8. **Distinguish operational value creation (ROIC) from leverage effect (ROE)** — prefer ROIC.
+9. **A high P/E is not necessarily expensive** if the CAP is underestimated. A low P/E is not necessarily cheap if the CAP is zero.
+10. **Define exit criteria before buying.**
+11. **Run the falsification checklist before every final verdict.**
+12. **Run the accounting red flag checklist before trusting any financial metric.**
